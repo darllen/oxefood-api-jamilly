@@ -27,6 +27,10 @@ public class ClienteRequest {
 
    private String foneFixo;
 
+
+
+   
+
    public Cliente build() {
 
        return Cliente.builder()
