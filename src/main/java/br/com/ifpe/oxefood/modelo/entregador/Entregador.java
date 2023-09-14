@@ -8,6 +8,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Where;
 
+//import br.com.ifpe.oxefood.util.Endereco;
 import br.com.ifpe.oxefood.util.entity.EntidadeAuditavel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -51,6 +52,5 @@ public class Entregador extends EntidadeAuditavel {
     @Column
     private Boolean statusAtivo;
 
-    // @Column
-    // private Endereco endereco;
+    //private Endereco endereco;
 }
