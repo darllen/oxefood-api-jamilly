@@ -23,12 +23,12 @@ public class ProdutoService {
         return repository.save(produto);
     }
 
-    public List<Produto> listarTodos() {
+    public List<Produto> findAll() {
 
         return repository.findAll();
     }
 
-    public Produto obterPorID(Long id) {
+    public Produto findById(Long id) {
 
         return repository.findById(id).get();
     }

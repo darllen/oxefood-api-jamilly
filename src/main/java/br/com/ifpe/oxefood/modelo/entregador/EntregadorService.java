@@ -23,12 +23,12 @@ public class EntregadorService {
         return repository.save(entregador);
     }
 
-    public List<Entregador> listarTodos() {
+    public List<Entregador> findAll() {
 
         return repository.findAll();
     }
 
-    public Entregador obterPorID(Long id) {
+    public Entregador findById(Long id) {
 
         return repository.findById(id).get();
     }

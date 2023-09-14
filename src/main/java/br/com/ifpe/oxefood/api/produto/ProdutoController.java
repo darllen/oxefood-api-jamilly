@@ -35,15 +35,15 @@ public class ProdutoController {
     }
 
     @GetMapping
-    public List<Produto> listarTodos() {
+    public List<Produto> findAll() {
   
-        return produtoService.listarTodos();
+        return produtoService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Produto obterPorID(@PathVariable Long id) {
+    public Produto findById(@PathVariable Long id) {
 
-        return produtoService.obterPorID(id);
+        return produtoService.findById(id);
     }
     
 }

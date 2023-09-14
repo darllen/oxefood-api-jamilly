@@ -35,14 +35,14 @@ public class EntregadorController {
     }
 
     @GetMapping
-    public List<Entregador> listarTodos() {
+    public List<Entregador> findAll() {
 
-        return entregadorService.listarTodos();
+        return entregadorService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Entregador obterPorID(@PathVariable Long id) {
+    public Entregador findById(@PathVariable Long id) {
 
-        return entregadorService.obterPorID(id);
+        return entregadorService.findById(id);
     }
 }
