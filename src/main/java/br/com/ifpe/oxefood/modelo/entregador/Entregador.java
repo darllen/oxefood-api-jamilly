@@ -52,5 +52,26 @@ public class Entregador extends EntidadeAuditavel {
     @Column
     private Boolean statusAtivo;
 
-    //private Endereco endereco;
+    @Column
+    private String rua;
+
+    @Column
+    private String bairro;
+
+    @Column
+    private String cidade;
+
+    @Column
+    private String cep;
+
+    @Column
+    private String uf;
+
+    @Column
+    private String complemento;
+
+    @Column
+    private String numero;
+
+    // private Endereco endereco;
 }

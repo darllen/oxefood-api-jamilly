@@ -16,41 +16,47 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EntregadorRequest {
-    
-    private String nome;
-    
-    private String cpf;
 
-    private String rg;
+   private String nome;
+   private String cpf;
+   private String rg;
 
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDate dataNascimento;
+   @JsonFormat(pattern = "dd/MM/yyyy")
+   private LocalDate dataNascimento;
+   private String foneCelular;
+   private String foneFixo;
+   private Integer qEntregasRealizadas;
+   private Double valorPorFrete;
+   private Boolean statusAtivo;
+   private String rua;
+   private String bairro;
+   private String cidade;
+   private String cep;
+   private String uf;
+   private String complemento;
+   private String numero;
 
-    private String foneCelular;
+   // private Endereco endereco;
 
-    private String foneFixo;
+   public Entregador build() {
 
-    private Integer qEntregasRealizadas;
-
-    private Double valorPorFrete;
-
-    private Boolean statusAtivo;
-
-    //private Endereco endereco;
-
-
-    public Entregador build() {
-
-       return Entregador.builder()
-               .nome(nome)
-               .cpf(cpf)
-               .rg(rg)
-               .dataNascimento(dataNascimento)
-               .foneCelular(foneCelular)
-               .foneFixo(foneFixo)
-               .qEntregasRealizadas(qEntregasRealizadas)
-               .valorPorFrete(valorPorFrete)
-               .statusAtivo(statusAtivo)
-               .build();
+      return Entregador.builder()
+            .nome(nome)
+            .cpf(cpf)
+            .rg(rg)
+            .dataNascimento(dataNascimento)
+            .foneCelular(foneCelular)
+            .foneFixo(foneFixo)
+            .qEntregasRealizadas(qEntregasRealizadas)
+            .valorPorFrete(valorPorFrete)
+            .statusAtivo(statusAtivo)
+            .rua(rua)
+            .bairro(bairro)
+            .cidade(cidade)
+            .cep(cep)
+            .uf(uf)
+            .complemento(complemento)
+            .numero(numero)
+            .build();
    }
 }
