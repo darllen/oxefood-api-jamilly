@@ -23,13 +23,40 @@ public class ProdutoService {
         return repository.save(produto);
     }
 
-    public List<Produto> listarTodos() {
+    public List<Produto> findAll() {
 
         return repository.findAll();
     }
 
-    public Produto obterPorID(Long id) {
+    public Produto findById(Long id) {
 
         return repository.findById(id).get();
+    }
+
+    @Transactional
+    public void update(Long id, Produto produtoAlterado) {
+
+        Produto produto = repository.findById(id).get();
+
+        produto.setTitulo(produtoAlterado.getTitulo());
+        produto.setCodigo(produtoAlterado.getCodigo());
+        produto.setDescricao(produtoAlterado.getDescricao());
+        produto.setValorUnitario(produtoAlterado.getValorUnitario());
+        produto.setTempoEntregaMin(produtoAlterado.getTempoEntregaMin());
+        produto.setTempoEntregaMax(produtoAlterado.getTempoEntregaMax());
+
+        produto.setVersao(produto.getVersao() + 1);
+        repository.save(produto);
+    }
+
+    @Transactional
+    public void delete(Long id) {
+
+        Produto produto = repository.findById(id).get();
+        
+        produto.setHabilitado(Boolean.FALSE);
+        produto.setVersao(produto.getVersao() + 1);
+
+        repository.save(produto);
     }
 }
