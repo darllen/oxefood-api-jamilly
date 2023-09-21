@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-
 @Service
 public class CategoriaProdutoService {
 
@@ -33,5 +32,27 @@ public class CategoriaProdutoService {
     public CategoriaProduto findById(Long id) {
 
         return repository.findById(id).get();
+    }
+
+    @Transactional
+    public void update(Long id, CategoriaProduto categoriaALterada) {
+
+        CategoriaProduto categoria = repository.findById(id).get();
+
+        categoria.setDescricao(categoriaALterada.getDescricao());
+
+        categoria.setVersao(categoria.getVersao() + 1);
+        repository.save(categoria);
+    }
+
+    @Transactional
+    public void delete(Long id) {
+
+        CategoriaProduto categoria = repository.findById(id).get();
+        
+        categoria.setHabilitado(Boolean.FALSE);
+        categoria.setVersao(categoria.getVersao() + 1);
+
+        repository.save(categoria);
     }
 }
