@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import br.com.ifpe.oxefood.modelo.entregador.Entregador;
-//import br.com.ifpe.oxefood.util.Endereco;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -36,7 +35,6 @@ public class EntregadorRequest {
    private String complemento;
    private String numero;
 
-   // private Endereco endereco;
 
    public Entregador build() {
 
