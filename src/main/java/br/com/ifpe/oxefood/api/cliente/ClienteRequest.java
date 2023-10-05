@@ -21,7 +21,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ClienteRequest {
-
    @NotNull(message = "O Nome é de preenchimento obrigatório")
    @NotBlank(message = "O Nome é de preenchimento obrigatório")
    @Length(max = 100, message = "O Nome deverá ter no máximo {max} caracteres")
@@ -29,6 +28,7 @@ public class ClienteRequest {
 
    @JsonFormat(pattern = "dd/MM/yyyy")
    private LocalDate dataNascimento;
+
 
    @NotNull(message = "O CPF é de preenchimento obrigatório")
    @NotBlank(message = "O CPF é de preenchimento obrigatório")
@@ -40,18 +40,14 @@ public class ClienteRequest {
 
    private String foneFixo;
 
-
-
-   
-
    public Cliente build() {
 
-       return Cliente.builder()
-               .nome(nome)
-               .dataNascimento(dataNascimento)
-               .cpf(cpf)
-               .foneCelular(foneCelular)
-               .foneFixo(foneFixo)
-               .build();
+      return Cliente.builder()
+            .nome(nome)
+            .dataNascimento(dataNascimento)
+            .cpf(cpf)
+            .foneCelular(foneCelular)
+            .foneFixo(foneFixo)
+            .build();
    }
 }

@@ -17,9 +17,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.ifpe.oxefood.api.cliente.endereco.EnderecoClienteRequest;
 import br.com.ifpe.oxefood.modelo.cliente.Cliente;
 import br.com.ifpe.oxefood.modelo.cliente.ClienteService;
-import br.com.ifpe.oxefood.modelo.cliente.EnderecoCliente;
+import br.com.ifpe.oxefood.modelo.cliente.endereco.EnderecoCliente;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -34,7 +35,7 @@ public class ClienteController {
 
     @ApiOperation(value = "Serviço responsável por salvar um cliente no sistema.")
     @PostMapping
-    public ResponseEntity<Cliente> save(@RequestBody @Valid ClienteRequest request) {
+    public ResponseEntity<Cliente> save(@RequestBody  @Valid ClienteRequest request) {
 
         Cliente cliente = clienteService.save(request.build());
         return new ResponseEntity<Cliente>(cliente, HttpStatus.CREATED);

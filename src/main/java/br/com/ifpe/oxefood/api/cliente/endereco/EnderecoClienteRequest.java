@@ -1,6 +1,6 @@
-package br.com.ifpe.oxefood.api.cliente;
+package br.com.ifpe.oxefood.api.cliente.endereco;
 
-import br.com.ifpe.oxefood.modelo.cliente.EnderecoCliente;
+import br.com.ifpe.oxefood.modelo.cliente.endereco.EnderecoCliente;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class EnderecoClienteRequest {
 
+    private Long idCliente;
     private String rua;
     private String numero;
     private String bairro;
