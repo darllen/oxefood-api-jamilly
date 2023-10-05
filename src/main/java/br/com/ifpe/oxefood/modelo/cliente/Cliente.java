@@ -1,15 +1,11 @@
 package br.com.ifpe.oxefood.modelo.cliente;
 
 import java.time.LocalDate;
-import java.util.List;
-
-import br.com.ifpe.oxefood.modelo.cliente.endereco.EnderecoCliente;
 import br.com.ifpe.oxefood.util.entity.EntidadeAuditavel;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-/* import javax.persistence.FetchType; */
-import javax.persistence.OneToMany;
+
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Where;
@@ -30,9 +26,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Cliente extends EntidadeAuditavel{
-
-    @OneToMany()
-    private List<EnderecoCliente> enderecos;
 
     @Column
     private String nome;
