@@ -5,7 +5,8 @@ import br.com.ifpe.oxefood.util.entity.EntidadeAuditavel;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Where;
@@ -16,7 +17,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Entity
 @Table(name = "Cliente")
 @Where(clause = "habilitado = true")
@@ -25,15 +25,18 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Cliente extends EntidadeAuditavel{
+public class Cliente extends EntidadeAuditavel {
 
-    @Column
+    /* @OneToMany(mappedBy = "cliente", orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<EnderecoCliente> enderecos; */
+
+    @Column(nullable = false, length = 100)
     private String nome;
 
-    @Column(name = "DT_NASC")
+    @Column
     private LocalDate dataNascimento;
 
-    @Column
+    @Column(unique = true)
     private String cpf;
 
     @Column
@@ -41,7 +44,5 @@ public class Cliente extends EntidadeAuditavel{
 
     @Column
     private String foneFixo;
-
-    
 
 }

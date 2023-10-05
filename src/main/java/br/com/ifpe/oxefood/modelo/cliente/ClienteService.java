@@ -41,6 +41,7 @@ public class ClienteService {
            throw new EntidadeNaoEncontradaException("Cliente", id);
        }
 
+
     }
 
     @Transactional
