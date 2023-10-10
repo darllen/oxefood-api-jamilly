@@ -25,7 +25,7 @@ public class ClienteService {
         cliente.setDataCriacao(LocalDate.now());
         return repository.save(cliente);
     }
-
+ 
     public List<Cliente> findAll() {
 
         return repository.findAll();
