@@ -41,7 +41,6 @@ public class ClienteService {
            throw new EntidadeNaoEncontradaException("Cliente", id);
        }
 
-
     }
 
     @Transactional
@@ -69,6 +68,27 @@ public class ClienteService {
 
         repository.save(cliente);
     }
+
+    public List<Cliente> filtrar(String cpf, String nome) {
+
+       List<Cliente> listaClientes = repository.findAll();
+
+       if ((cpf != null && !"".equals(cpf)) &&
+           (nome == null || "".equals(nome))) {
+               listaClientes = repository.consultarPorCpf(cpf);
+       } else if (
+           (cpf == null || "".equals(cpf)) &&
+           (nome != null && !"".equals(nome))) {    
+               listaClientes = repository.findByNameContainingIgnoreCaseOrderByNomeAsc(nome);
+       } else if (
+           (cpf != null || "".equals(cpf)) &&
+           (nome != null && !"".equals(nome))) {    
+               listaClientes = repository.consultarPorNomeECpf(cpf, nome);
+       } 
+
+       return listaClientes;
+}
+
 
 
 
