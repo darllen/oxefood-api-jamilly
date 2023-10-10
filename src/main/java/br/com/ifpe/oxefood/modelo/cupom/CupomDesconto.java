@@ -26,10 +26,10 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CupomDesconto extends EntidadeAuditavel{
 
-    @Column
+    @Column(unique = true)
     private String codigoDesconto;
 
-    @Column
+    @Column(nullable = false)
     private Double percentualDesconto;
 
     @Column
