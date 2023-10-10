@@ -1,28 +1,28 @@
 # POSTGRESQL
-version: "3"
+#version: "3"
+#services:
+
+#  db:
+#    image: postgres:9.6
+#    restart: always
+#    environment:
+#      POSTGRES_PASSWORD: oxefood
+#      POSTGRES_DB: oxefood
+#    ports:
+#      - 5435:5432
+#    volumes:
+#      - ./postgres-data:/bitnami/postgresql/data
+
+# MYSQL
+version: '3'
 services:
-
-  db:
-    image: postgres:9.6
-    restart: always
+  mysql:
+    image: mysql:latest
+    container_name: meu-mysql
     environment:
-      POSTGRES_PASSWORD: oxefood
-      POSTGRES_DB: oxefood
+      MYSQL_ROOT_PASSWORD: 12345678
+      MYSQL_DATABASE: oxefood
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 12345678
     ports:
-      - 5435:5432
-    volumes:
-      - ./postgres-data:/bitnami/postgresql/data
-
-# # MYSQL
-#  version: '3'
-#  services:
-#    mysql:
-#      image: mysql:latest
-#      container_name: meu-mysql
-#      environment:
-#        MYSQL_ROOT_PASSWORD: 12345678
-#        MYSQL_DATABASE: oxefood
-#        MYSQL_USER: root
-#        MYSQL_PASSWORD: 12345678
-#      ports:
-#        - "5435:3306"
+      - "5435:3306"

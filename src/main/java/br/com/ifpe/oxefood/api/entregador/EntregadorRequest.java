@@ -2,6 +2,12 @@ package br.com.ifpe.oxefood.api.entregador;
 
 import java.time.LocalDate;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.br.CPF;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import br.com.ifpe.oxefood.modelo.entregador.Entregador;
@@ -16,13 +22,25 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class EntregadorRequest {
 
+   @NotNull(message = "O Nome é de preenchimento obrigatório")
+   @NotBlank(message = "O Nome é de preenchimento obrigatório")
    private String nome;
+
+   @NotNull(message = "O CPF é de preenchimento obrigatório")
+   @NotBlank(message = "O CPF é de preenchimento obrigatório")
+   @CPF
    private String cpf;
+
+   @Length(min = 7, max = 10, message = "O campo RG tem que ter entre {min} e {max} caracteres")
    private String rg;
 
    @JsonFormat(pattern = "dd/MM/yyyy")
    private LocalDate dataNascimento;
+
+   @Length(min = 8, max = 20, message = "O campo Fone tem que ter entre {min} e {max} caracteres")
    private String foneCelular;
+
+
    private String foneFixo;
    private Integer qEntregasRealizadas;
    private Double valorPorFrete;
