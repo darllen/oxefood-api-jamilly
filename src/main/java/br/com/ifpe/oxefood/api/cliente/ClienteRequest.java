@@ -1,6 +1,7 @@
 package br.com.ifpe.oxefood.api.cliente;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -30,7 +31,6 @@ public class ClienteRequest {
    @JsonFormat(pattern = "dd/MM/yyyy")
    private LocalDate dataNascimento;
 
-
    @NotNull(message = "O CPF é de preenchimento obrigatório")
    @NotBlank(message = "O CPF é de preenchimento obrigatório")
    @CPF
@@ -40,6 +40,7 @@ public class ClienteRequest {
    private String foneCelular;
 
    private String foneFixo;
+   private ArrayList<Long> idEnderecos;
 
    public Cliente build() {
 

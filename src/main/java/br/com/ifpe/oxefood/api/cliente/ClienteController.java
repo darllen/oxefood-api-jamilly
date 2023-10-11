@@ -1,5 +1,6 @@
 package br.com.ifpe.oxefood.api.cliente;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -20,6 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.ifpe.oxefood.modelo.cliente.Cliente;
 import br.com.ifpe.oxefood.modelo.cliente.ClienteService;
+import br.com.ifpe.oxefood.modelo.cliente.endereco.EnderecoCliente;
+import br.com.ifpe.oxefood.modelo.cliente.endereco.EnderecoClienteService;
 import br.com.ifpe.oxefood.modelo.produto.Produto;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -33,9 +36,16 @@ public class ClienteController {
     @Autowired
     private ClienteService clienteService;
 
+    @Autowired
+    private EnderecoClienteService enderecoClienteService;
+
     @ApiOperation(value = "Serviço responsável por salvar um cliente no sistema.")
     @PostMapping
     public ResponseEntity<Cliente> save(@RequestBody  @Valid ClienteRequest request) {
+        Cliente clienteNovo = request.build();
+        //clienteNovo.setEnderecos(enderecoClienteService.findAllById(request.getIdEnderecos()));
+
+        clienteNovo.setEnderecos( enderecoClienteService.findAllById(request.getIdEnderecos()));
 
         Cliente cliente = clienteService.save(request.build());
         return new ResponseEntity<Cliente>(cliente, HttpStatus.CREATED);

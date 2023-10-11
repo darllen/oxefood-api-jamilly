@@ -1,6 +1,9 @@
 package br.com.ifpe.oxefood.modelo.cliente;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+
+import br.com.ifpe.oxefood.modelo.cliente.endereco.EnderecoCliente;
 import br.com.ifpe.oxefood.util.entity.EntidadeAuditavel;
 
 import javax.persistence.Column;
@@ -27,13 +30,13 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Cliente extends EntidadeAuditavel {
 
-    /* @OneToMany(mappedBy = "cliente", orphanRemoval = true, fetch = FetchType.EAGER)
-    private List<EnderecoCliente> enderecos; */
+    @OneToMany(mappedBy = "cliente", orphanRemoval = true, fetch = FetchType.EAGER)
+    private ArrayList<EnderecoCliente> enderecos; 
 
     @Column(nullable = false, length = 100)
     private String nome;
 
-    @Column
+    @Column(name = "DT_NASC")
     private LocalDate dataNascimento;
 
     @Column(unique = true)
