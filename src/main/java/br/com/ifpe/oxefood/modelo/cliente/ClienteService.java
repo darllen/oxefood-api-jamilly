@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.ifpe.oxefood.modelo.acesso.UsuarioService;
 import br.com.ifpe.oxefood.modelo.mensagens.EmailService;
 import br.com.ifpe.oxefood.util.exception.EntidadeNaoEncontradaException;
 
@@ -21,21 +22,24 @@ public class ClienteService {
     @Autowired
     private EmailService emailService;
 
+    @Autowired
+    private UsuarioService usuarioService;
 
     @Transactional
     public Cliente save(Cliente cliente) {
 
+        usuarioService.save(cliente.getUsuario());
+
         cliente.setHabilitado(Boolean.TRUE);
         cliente.setVersao(1L);
         cliente.setDataCriacao(LocalDate.now());
-
         Cliente clienteSalvo = repository.save(cliente);
-        
+
         emailService.enviarEmailConfirmacaoCadastroCliente(clienteSalvo);
 
         return clienteSalvo;
     }
- 
+
     public List<Cliente> findAll() {
 
         return repository.findAll();
@@ -44,12 +48,12 @@ public class ClienteService {
     public Cliente findById(Long id) {
 
         Optional<Cliente> consulta = repository.findById(id);
-  
-       if (consulta.isPresent()) {
-           return consulta.get();
-       } else {
-           throw new EntidadeNaoEncontradaException("Cliente", id);
-       }
+
+        if (consulta.isPresent()) {
+            return consulta.get();
+        } else {
+            throw new EntidadeNaoEncontradaException("Cliente", id);
+        }
 
     }
 
@@ -72,7 +76,7 @@ public class ClienteService {
     public void delete(Long id) {
 
         Cliente cliente = repository.findById(id).get();
-        
+
         cliente.setHabilitado(Boolean.FALSE);
         cliente.setVersao(cliente.getVersao() + 1);
 
@@ -81,26 +85,20 @@ public class ClienteService {
 
     public List<Cliente> filtrar(String cpf, String nome) {
 
-       List<Cliente> listaClientes = repository.findAll();
+        List<Cliente> listaClientes = repository.findAll();
 
-       if ((cpf != null && !"".equals(cpf)) &&
-           (nome == null || "".equals(nome))) {
-               listaClientes = repository.consultarPorCpf(cpf);
-       } else if (
-           (cpf == null || "".equals(cpf)) &&
-           (nome != null && !"".equals(nome))) {    
-               listaClientes = repository.findByNameContainingIgnoreCaseOrderByNomeAsc(nome);
-       } else if (
-           (cpf != null || "".equals(cpf)) &&
-           (nome != null && !"".equals(nome))) {    
-               listaClientes = repository.consultarPorNomeECpf(cpf, nome);
-       } 
+        if ((cpf != null && !"".equals(cpf)) &&
+                (nome == null || "".equals(nome))) {
+            listaClientes = repository.consultarPorCpf(cpf);
+        } else if ((cpf == null || "".equals(cpf)) &&
+                (nome != null && !"".equals(nome))) {
+            listaClientes = repository.findByNameContainingIgnoreCaseOrderByNomeAsc(nome);
+        } else if ((cpf != null || "".equals(cpf)) &&
+                (nome != null && !"".equals(nome))) {
+            listaClientes = repository.consultarPorNomeECpf(cpf, nome);
+        }
 
-       return listaClientes;
-}
-
-
-
-
+        return listaClientes;
+    }
 
 }
